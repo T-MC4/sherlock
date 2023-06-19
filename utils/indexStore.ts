@@ -31,9 +31,12 @@ export async function getIndexName(question: string): Promise<string | undefined
     question: sanitizedQuestion,
   });
 
-  const inputString = "This is not a question, but a greeting.\nAction: No action needed.";
-  const match = /Action:\s*(.*)/.exec(inputString);
+  const match = /Action:\s*(.*)/.exec(ans.text);
   const actionString = (match && match[1]) ?? '';
+
+  if (!jsonData.find(item => item.indexName === actionString)) {
+    return jsonData[0].indexName
+  }
 
   return actionString;
 }
