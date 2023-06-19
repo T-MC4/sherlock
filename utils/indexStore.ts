@@ -8,7 +8,7 @@ import { LLMChain, ConversationChain } from "langchain/chains";
 import { BufferMemory } from "langchain/memory";
 
 dotenv.config();
-const key = process.env.OPENAI_API_KEY || "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";
+const key = process.env.OPENAI_API_KEY || "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";
 const model = process.env.OPENAI_MODEL || "gpt-3.5-turbo";
 const inMemorySearchURL =
   process.env.IN_MEMORY_SEARCH_URL || "https://sherlock-inmemorysearch-production.up.railway.app";
