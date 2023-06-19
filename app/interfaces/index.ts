@@ -14,7 +14,7 @@ export interface StatType {
 
 export interface ChatType {
     isIn: boolean;
-    text: string;
+    text: string | Element;
     time?: string;
 }
 
@@ -30,5 +30,4 @@ export interface SessionListType extends Array<{
 export interface SessionItemType {
     statsData: Array<StatType>;
     priorityList: any;
-    actionSteps: string;
 }

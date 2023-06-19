@@ -49,8 +49,7 @@ import type {
   LinksFunction, 
   LoaderFunction 
 } from "@remix-run/node"
-import type { 
-  KPIType, 
+import type {
   ChatType, 
   StatType, 
   StatsForm, 
@@ -69,7 +68,7 @@ export const loader: LoaderFunction = async (args) => {
   const { userId } = await getAuth(args);
 
   if (!userId) {
-    // return redirect("/sign-in?redirect_url=" + args.request.url);
+    return redirect("/sign-in?redirect_url=" + args.request.url);
   }
 
   return { userId };
@@ -148,16 +147,16 @@ const Dashboard = () => {
     }
     const sessionData: SessionItemType | null = await getSessionData(userId, pSession.sessionId)
     if (sessionData) {
-      const { statsData, priorityList, actionSteps }: SessionItemType = sessionData
+      const { statsData, priorityList }: SessionItemType = sessionData
       setBusinessStats(statsData)
       pushMessage(true, priorityListToString(priorityList))
-      pushMessage(true, actionSteps)
+      pushMessage(true, getActionSteps(priorityList?.high_constraint ?? ''))
     }
     setCurrentSession(pSession)
   }
 
   // Add new chat item
-  const pushMessage = (isIn: boolean, text: string) => {
+  const pushMessage = (isIn: boolean, text: any) => {
     setChatList(chatList => ([...chatList, {
       isIn,
       text,
@@ -186,8 +185,7 @@ const Dashboard = () => {
         const newSessionName = data ?? getDateString(new Date())
         const newSessionId = await saveSession(userId, {
           statsData: newBusinessStats,
-          priorityList: result,
-          actionSteps: getActionSteps(result?.high_constraint ?? '')
+          priorityList: result
         }, newSessionName)
         if(newSessionId) {
           setCurrentSession({
@@ -206,14 +204,12 @@ const Dashboard = () => {
         // Update current session
         await updateSessionData(userId, currentSession.sessionId, {
           statsData: newBusinessStats,
-          priorityList: result,
-          actionSteps: getActionSteps(result?.high_constraint ?? '')
+          priorityList: result
         })
       }
     } catch(e: any) {
       setChatLoading(false)
       setChatStreamText('')
-      // pushMessage(true, e.toString())
     }
   }
 
@@ -222,6 +218,7 @@ const Dashboard = () => {
     let newStatsForm = getFormFromStats(businessStats)
     newStatsForm[editItem.id] = editItem.value
     setStatsForm(newStatsForm)
+    setEditItem(null)
     await updateBusinessStats(newStatsForm, isNew, sessionName)
   }
 
@@ -235,7 +232,7 @@ const Dashboard = () => {
     pushMessage(true, answer)
   }
 
-  // ** Push chat stream text
+  // Push chat stream text
   const pushChatStreamText = (token: string) => {
     setChatStreamText((text) => text + token)
   }
@@ -250,6 +247,15 @@ const Dashboard = () => {
   const handleCloseStepWizard = () => {
     setStepWizardModal(false)
     setStatsForm({})
+  }
+
+  // Open KPI Edit Modal
+  const handleKPIEditModal = (item: any) => {
+    if (currentSession) {
+      setEditItem(item)
+    } else {
+      alert("You should create your session first to update KPI.")
+    }
   }
 
   return (    
@@ -279,7 +285,7 @@ const Dashboard = () => {
               <StatsCard 
                 key={index} 
                 data={item} 
-                onOpenModal={(e: KPIType) => setEditItem(e)} 
+                onOpenModal={handleKPIEditModal} 
               />
             ))}
           </Slider>

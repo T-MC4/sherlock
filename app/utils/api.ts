@@ -115,7 +115,7 @@ export const getAnswerFromBot = async (question: string, priorityList: any, push
       context ?? [],
       question,
       priorityList?.high_constraint ?? "",
-      getActionSteps(priorityList?.high_constraint ?? ""),
+      getActionSteps(priorityList?.high_constraint ?? "")?.toString() ?? '',
       pushChatStreamText
     );
     return answer?.trim() ?? "😊😊😊";
