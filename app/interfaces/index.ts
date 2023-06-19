@@ -15,7 +15,7 @@ export interface StatType {
 export interface ChatType {
     isIn: boolean;
     text: string;
-    time: string;
+    time?: string;
 }
 
 export interface StatsForm {

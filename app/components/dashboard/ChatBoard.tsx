@@ -14,12 +14,13 @@ import TextareaAutosize from 'react-textarea-autosize'
 interface Props {
   chatList: Array<ChatType>
   chatLoading: boolean
+  chatStreamText: string
   handleSendMessage: any
 }
 
 export default function ChatBoard(props: Props) {
 
-  const { chatList, chatLoading, handleSendMessage } = props
+  const { chatList, chatLoading, chatStreamText, handleSendMessage } = props
 
   const [chat, setChat] = useState<string>('')
 
@@ -36,15 +37,25 @@ export default function ChatBoard(props: Props) {
     handleSendMessage(chat)
   }
 
+  const renderChatLoading = () => {
+    if (!chatLoading) return null
+    if (chatStreamText === '') {
+      return <ChatLoader />
+    } else {
+      <ChatItem data={{
+        isIn: true,
+        text: chatStreamText
+      }} />
+    }
+  }
+
   return (
     <div className="rounded-md w-full mx-auto bg-gray-100 p-3 sm:rounded-t-none">
       <div className="h-[520px]">
         <div className="pr-2 sm:bg-white sm:rounded-md sm:p-6 sm:shadow-md pb-2 h-full overflow-y-auto rounded-scroll" id="chat_list">
           <div className="flex flex-col justify-end">
             {chatList.map((item: ChatType, index) => <ChatItem data={item} key={index} />)}
-            {chatLoading && (
-              <ChatLoader />
-            )}
+            {renderChatLoading()}
           </div>
         </div>
       </div>

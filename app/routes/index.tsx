@@ -252,8 +252,6 @@ const Dashboard = () => {
     setStatsForm({})
   }
 
-  console.log('1111', chatStreamText)
-
   return (    
     <div className="text-center my-14">
       <h1 className="text-3xl font-bold">Sherlock Constraint Finder</h1>
@@ -293,6 +291,7 @@ const Dashboard = () => {
           <ChatBoard 
             chatList={chatList}
             chatLoading={chatLoading}
+            chatStreamText={chatStreamText}
             handleSendMessage={handleSendMessage}
           />
         </div>
