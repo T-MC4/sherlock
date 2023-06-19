@@ -31,6 +31,7 @@ export function getIndexNamePrompt(jsonData: any[]) {
 }
 
 export function getPriorityDecisionPrompt(kpiJsonData: Record<string, number>) {
+
   return ChatPromptTemplate.fromPromptMessages([
     SystemMessagePromptTemplate.fromTemplate(`Your job is now to act as my business analyst. I'm going to provide you with a set of current metrics in the business, you are going to evaluate the metrics given with the objective of finding constraints and then identify the #1 focus point based on the order of priority in the list I provide.
             
@@ -125,11 +126,11 @@ export function getPriorityDecisionPrompt(kpiJsonData: Record<string, number>) {
     14. Collection Rate Is Too Low
     15. Return On Ad Spend Is Too Low
     
-    Now respond with the following message only customizing the areas in the following format:
-    {
-        "high_constraint": [Your #1 Constraint To Solve Right Now Is Highest Numbered Constraint Identified],
-        "other_constraints": [List Of Other Identified Constraints In Order Of Importance In Array Form]
-    }`),
+    Now respond with the following message only customizing the areas in the following json format:
+    (
+      "high_constraint": [Highest Numbered Constraint Identified],
+      "other_constraints": [List Of Other Identified Constraints In Order Of Importance In Array Form]
+    )`),
     HumanMessagePromptTemplate.fromTemplate("{input}"),
   ]);
 }

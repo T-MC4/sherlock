@@ -213,7 +213,7 @@ const Dashboard = () => {
     } catch(e: any) {
       setChatLoading(false)
       setChatStreamText('')
-      pushMessage(true, e.toString())
+      // pushMessage(true, e.toString())
     }
   }
 

@@ -42,7 +42,7 @@ export async function getIndexName(question: string): Promise<string | undefined
 }
 
 export async function getPriorityDecision(
-  kpiJsonData: Record<string, number>
+  kpiJsonData: Record<string, number>,
 ): Promise<{ high_constraint: string; other_constraints: string[] } | undefined> {
   // Create chain and set LLM options
   const chain = new LLMChain({
@@ -51,23 +51,14 @@ export async function getPriorityDecision(
       openAIApiKey: key,
       modelName: "gpt-4",
       temperature: 0,
-      maxTokens: 2048,
-      streaming: true,
-      callbacks: [
-        {
-          handleLLMNewToken(token) {
-            process.stdout.write(token);
-          },
-        },
-      ],
+      maxTokens: 2048
     }),
   });
   const ans = await chain.call({
     input: "Below is the answer you have written based on this while adhering to all the guidelines I gave you:",
   });
-  console.log(ans);
-  console.log(ans.response);
-  if (ans) return JSON.parse(ans.response);
+  
+  if (ans) return JSON.parse(ans.text);
   else return undefined;
 }
 
@@ -120,8 +111,6 @@ export async function getAnswer(
   const ans = await chain.call({
     input: question,
   });
-
-  console.log(ans.response);
 
   return ans.response;
 }
