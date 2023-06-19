@@ -49,6 +49,8 @@ export default function ChatBoard(props: Props) {
     }
   }
 
+  console.log(chatLoading, chatStreamText.length)
+
   return (
     <div className="rounded-md w-full mx-auto bg-gray-100 p-3 sm:rounded-t-none">
       <div className="h-[520px]">
