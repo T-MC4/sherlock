@@ -1,0 +1,211 @@
+.custom-section {
+    max-width: 400px;
+    width: 100%;
+    margin-top: 50px;
+    padding: 2.375rem 2rem 3rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 24px 48px;
+    -webkit-font-smoothing: auto !important
+}
+
+.custom-section .signup-description {
+    margin-top: 2rem!important;
+    box-sizing: border-box;
+    color: black;
+    margin: 0px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: auto !important;
+}
+
+.custom-section .signup-sub-description {
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.65);
+    margin: 0px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 400;
+    line-height: 1.25;
+    -webkit-font-smoothing: auto !important;
+    margin-top: 0.25rem;
+}
+
+.custom-section .image-logo {
+    height: 50px;
+}
+
+.custom-section .signup-basic-form {
+    margin-top: 30px;
+}
+
+.signup-form .custom-form-item {
+    margin-bottom: 15px;
+}
+
+.signup-form .custom-form-item label {
+    display: block;
+    font-size: 0.8125rem;
+    margin-bottom: 5px;
+    margin-left: 4px;
+}
+
+.signup-form .custom-form-item input:not(.PhoneInputInput),
+.signup-form .custom-form-item .PhoneInput {
+    display: block;
+    box-sizing: inherit;
+    margin: 0px;
+    padding: 0.625rem 1rem;
+    background-color: white;
+    color: black;
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    width: 100%;
+    aspect-ratio: unset;
+    accent-color: rgb(16, 63, 239);
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    line-height: 1.25;
+    border-radius: 0.375rem;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    -webkit-font-smoothing: auto !important;
+}
+
+.signup-form .custom-form-item .PhoneInput {
+    display: flex;
+    align-items: center;
+}
+
+.signup-form .custom-form-item .PhoneInput input {
+    border: none;
+    padding: 0;
+    outline: none;
+}
+
+.signup-form .custom-form-item .PhoneInputCountry {
+    margin-right: 15px;
+}
+
+.signup-form .custom-form-item .input-password {
+    position: relative;
+}
+
+.signup-form .custom-form-item .input-password input {
+    padding-right: 40px;
+}
+
+.signup-form .custom-form-item .input-password .pwd-option {
+    position: absolute;
+    right: 12px;
+    top: 11px;
+    cursor: pointer;
+}
+
+.signup-form .agree_tnc {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.signup-form .agree_tnc + .err-msg {
+    margin-left: 7px;
+}
+
+.signup-form .agree_tnc label {
+    margin-left: 10px;
+    font-size: 0.8125rem;
+}
+
+.signup-form .err-msg {
+    color: rgb(228, 47, 47);
+    font-size: 0.8125rem;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+.signup-form .custom-form-item input:not(.PhoneInputInput):focus,
+.signup-form .custom-form-item.focused .PhoneInput {
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: rgb(145, 167, 247) 0px 0px 0px 1px;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: 200ms;
+}
+
+.signup-form .btn-submit {
+    width: 100%;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: all .3s;
+    padding: 0.625rem 1.25rem;
+    border: 0px;
+    outline: 0px;
+    background-color: #103FEF;
+    color: white;
+    border-radius: 0.375rem;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-duration: 100ms;
+    font-weight: 600;
+    font-size: 0.6875rem;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    text-transform: uppercase;
+    min-height: 2.25rem;
+}
+
+.signup-form .btn-submit:disabled {
+    cursor: not-allowed;
+}
+
+.signup-form .btn-submit:not(:disabled):hover {
+    background-color: #0D33BF;
+}
+
+.signup-form .btn-submit:not(:disabled):active {
+    background-color: #0A268F;
+}
+
+.signup-credential-form {
+    margin-top: 30px;
+}
+
+.signup-credential-form .btn-oauth {
+    width: 100%;
+    font-size: 0.8125rem;
+    display: flex;
+    padding: 9px 20px;
+    border-radius: 0.375rem;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    align-items: center;
+    justify-content: start;
+    transition: all .3s;
+}
+
+.signup-credential-form .btn-oauth:hover {
+    background-color: hsla(0, 0%, 0%, 0.04);
+}
+
+.signup-credential-form .btn-oauth .arrow-right {
+    transition: all .3s;
+    opacity: 0;
+    margin-right: 15px;
+}
+
+.signup-credential-form .btn-oauth .g_logo {
+    margin-right: 19px;
+}
+
+.signup-credential-form .btn-oauth:hover .arrow-right {
+    margin-right: 0;
+    opacity: 0.5;
+}
+
+.custom-section hr {
+    margin: 30px 0px;
+    border: none;
+    border-top: 1px solid #d9d9d9;
+}

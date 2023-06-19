@@ -1,0 +1,57 @@
+.loader {
+  position: relative;
+}
+
+.loader__dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: 2px;
+  border-radius: 5px;
+  background-color: white;
+  float: left;
+}
+
+.slide {
+  will-change: transform, opacity;
+  animation: slide 400ms infinite linear;
+}
+
+.slide__one {
+  animation: fadeIn 400ms infinite ease-out;
+}
+
+.slide__two {
+  animation: fadeOut 400ms infinite ease-in;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-11px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}

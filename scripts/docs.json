@@ -1,0 +1,56 @@
+[
+  {
+    "path": "docs/Section 1.docx",
+    "indexName": "airu-welcome-section-qa",
+    "description": "AirU Welcome Section QA - useful for when you need to ask questions about Air or getting started with Air",
+    "isUsed": true
+  },
+  {
+    "path": "docs/Section 2.docx",
+    "indexName": "airu-offer-section-qa",
+    "description": "AirU Offer Section QA - useful for when you need to ask questions about creating irresistible offers and scalable fulfillment.",
+    "isUsed": true
+  },
+  {
+    "path": "docs/Section 4.docx",
+    "indexName": "airu-midas-section-qa",
+    "description": "AirU Midas Section QA - useful for when you need to ask questions about Air's Midas fintech product and the funding process",
+    "isUsed": true
+  },
+  {
+    "path": "docs/Section 5.docx",
+    "indexName": "airu-precall-video-section-qa",
+    "description": "AirU Precall Video Section QA - useful for when you need to ask questions about creating appointment pre-call videos.",
+    "isUsed": true
+  },
+  {
+    "path": "docs/Section 6.docx",
+    "indexName": "airu-appoint-booking-section-qa",
+    "description": "AirU Appointment Booking Section QA - useful for when you need to ask questions about appointment booking, setting, outbound dialing, sales scripts, sms/email automations, and the set team in general.",
+    "isUsed": true
+  },
+  {
+    "path": "docs/Section 7.docx",
+    "indexName": "airu-traffic-section-qa",
+    "description": "AirU Traffic Section QA - useful for when you need to ask questions about traffic and leads, whether it be paid ads, organic methods, affiliates, or referrals",
+    "isUsed": true
+  },
+  {
+    "path": "docs/Section 8.docx",
+    "indexName": "airu-scaling-sales-teams-section-qa",
+    "description": "AirU Scaling Sales Teams Section QA - useful for when you need to ask questions about recruiting, hiring, and retaining sales rep talent.",
+    "isUsed": true
+  },
+  {
+    "path": "docs/Section 9.docx",
+    "indexName": "airu-managing-sales-teams-section-qa",
+    "description": "AirU Managing Sales Teams Section QA - useful for when you need to ask questions about managing sales teams, meetings, setter and closer projections, amd setter, closer, leadership daily SOPs.",
+    "isUsed": true
+  },
+  {
+    "path": "docs/Arbitrage Services - Minicourse.docx",
+    "indexName": "airu-arbitrage-section-qa",
+    "description": "AirU Arbitrage Section QA - useful for when you need to ask questions about arbitraging fulfillment and creating a back-end for your business even if you are starting from scratch by using other people's products and services.",
+    "isUsed": true
+  }
+]

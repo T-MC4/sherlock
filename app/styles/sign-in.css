@@ -1,0 +1,11 @@
+.cl-signIn-root .cl-footer+div {
+    display: none;
+}
+
+.cl-signIn-root .cl-logoImage {
+    height: 50px;
+}
+
+.cl-logoBox {
+    height: 50px;
+}
