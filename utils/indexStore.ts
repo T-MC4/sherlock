@@ -8,12 +8,9 @@ import { LLMChain, ConversationChain } from "langchain/chains";
 import { BufferMemory } from "langchain/memory";
 
 dotenv.config();
-const key = process.env.OPENAI_API_KEY || "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";
-const model = process.env.OPENAI_MODEL || "gpt-3.5-turbo";
+const key = process.env.OPENAI_API_KEY;
 const inMemorySearchURL =
   process.env.IN_MEMORY_SEARCH_URL || "https://sherlock-inmemorysearch-production.up.railway.app";
-
-export const openAI = new OpenAI(key);
 
 export async function getIndexName(question: string): Promise<string | undefined> {
   // Creating a new instance of the OpenAI class and passing in the OPENAI_KEY environment variable
@@ -41,9 +38,10 @@ export async function getIndexName(question: string): Promise<string | undefined
   const ans = await chain.call({
     question: sanitizedQuestion,
   });
+  console.log(ans);
 
   const regex = /(?<=Action:\s)[\w-]+/;
-  const match = ans?.match(regex);
+  const match = ans?.response?.match(regex);
   return match ? match[0] : undefined;
 }
 
@@ -71,7 +69,9 @@ export async function getPriorityDecision(
   const ans = await chain.call({
     input: "Below is the answer you have written based on this while adhering to all the guidelines I gave you:",
   });
-  if (ans) return JSON.parse(ans.text);
+  console.log(ans);
+  console.log(ans.response);
+  if (ans) return JSON.parse(ans.response);
   else return undefined;
 }
 
@@ -124,6 +124,8 @@ export async function getAnswer(
   const ans = await chain.call({
     input: question,
   });
+
+  console.log(ans.response);
 
   return ans.response;
 }
