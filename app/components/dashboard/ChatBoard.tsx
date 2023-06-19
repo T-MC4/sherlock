@@ -42,14 +42,12 @@ export default function ChatBoard(props: Props) {
     if (chatStreamText === '') {
       return <ChatLoader />
     } else {
-      <ChatItem data={{
+      return <ChatItem data={{
         isIn: true,
         text: chatStreamText
       }} />
     }
   }
-
-  console.log(chatLoading, chatStreamText.length)
 
   return (
     <div className="rounded-md w-full mx-auto bg-gray-100 p-3 sm:rounded-t-none">
