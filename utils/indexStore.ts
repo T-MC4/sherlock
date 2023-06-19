@@ -23,26 +23,19 @@ export async function getIndexName(question: string): Promise<string | undefined
       openAIApiKey: key,
       modelName: "gpt-4",
       temperature: 0,
-      maxTokens: 2048,
-      streaming: true,
-      callbacks: [
-        {
-          handleLLMNewToken(token) {
-            process.stdout.write(token);
-          },
-        },
-      ],
+      maxTokens: 2048
     }),
   });
 
   const ans = await chain.call({
     question: sanitizedQuestion,
   });
-  console.log(ans);
 
-  const regex = /(?<=Action:\s)[\w-]+/;
-  const match = ans?.response?.match(regex);
-  return match ? match[0] : undefined;
+  const inputString = "This is not a question, but a greeting.\nAction: No action needed.";
+  const match = /Action:\s*(.*)/.exec(inputString);
+  const actionString = (match && match[1]) ?? '';
+
+  return actionString;
 }
 
 export async function getPriorityDecision(
@@ -97,7 +90,6 @@ export async function getAnswer(
   priorityConstraint: string,
   actionSteps: string
 ): Promise<string | undefined> {
-  console.log(key)
   // Use the generateText method to generate text from the OpenAI API and passing the generated prompt, the model, and max token value
   const chain = new ConversationChain({
     memory: new BufferMemory({
@@ -114,8 +106,7 @@ export async function getAnswer(
       callbacks: [
         {
           handleLLMNewToken(token) {
-            process.stdout.write(token);
-            // dataCallback(token);
+            console.log(token)
           },
         },
       ],
