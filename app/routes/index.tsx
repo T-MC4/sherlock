@@ -103,6 +103,7 @@ const Dashboard = () => {
   const [priorityList, setPriorityList] = useState<any>(null)
   const [businessStats, setBusinessStats] = useState<Array<StatType>>(BUSINESS_STAT_LIST)
   const [currentSession, setCurrentSession] = useState<any>(null)
+  const [chatStreamText, setChatStreamText] = useState<string>('')
   const [stepWizardModal, setStepWizardModal] = useState<boolean>(false)
   const [sessionListModal, setSessionListModal] = useState<boolean>(false)
 
@@ -130,6 +131,13 @@ const Dashboard = () => {
       }, 400)
     }
   }, [tab])
+
+  // Init chat stream text when loading false
+  useEffect(() => {
+    if (!chatLoading) {
+      setChatStreamText('')
+    }
+  }, [chatLoading])
 
   // Update the Current Session and get the session data
   const updateCurrentSession = async (pSession: any) => {
@@ -204,6 +212,7 @@ const Dashboard = () => {
       }
     } catch(e: any) {
       setChatLoading(false)
+      setChatStreamText('')
       pushMessage(true, e.toString())
     }
   }
@@ -221,9 +230,14 @@ const Dashboard = () => {
     pushMessage(false, chat)
     setChatLoading(true)
     scrollDownToBottom("chat_list")
-    const answer = await getAnswerFromBot(chat, priorityList)
+    const answer = await getAnswerFromBot(chat, priorityList, pushChatStreamText)
     setChatLoading(false)
     pushMessage(true, answer)
+  }
+
+  // ** Push chat stream text
+  const pushChatStreamText = (token: string) => {
+    setChatStreamText((text) => text + token)
   }
 
   // Open SessionList modal
@@ -237,6 +251,8 @@ const Dashboard = () => {
     setStepWizardModal(false)
     setStatsForm({})
   }
+
+  console.log('1111', chatStreamText)
 
   return (    
     <div className="text-center my-14">

@@ -91,7 +91,8 @@ export async function getAnswer(
   context: any[],
   question: string,
   priorityConstraint: string,
-  actionSteps: string
+  actionSteps: string,
+  pushChatStreamText: any
 ): Promise<string | undefined> {
   // Use the generateText method to generate text from the OpenAI API and passing the generated prompt, the model, and max token value
   const chain = new ConversationChain({
@@ -109,7 +110,7 @@ export async function getAnswer(
       callbacks: [
         {
           handleLLMNewToken(token) {
-            console.log(token)
+            pushChatStreamText(token)
           },
         },
       ],

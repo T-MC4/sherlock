@@ -107,19 +107,17 @@ export const deleteSession = async (userId: string, sessionId: string): Promise<
   }
 };
 
-export const getAnswerFromBot = async (question: string, priorityList: any) => {
+export const getAnswerFromBot = async (question: string, priorityList: any, pushChatStreamText: any) => {
   try {
     const indexName = await getIndexName(question);
-    console.log(indexName);
     const context = await getContextFromIndex(question, indexName ?? "");
-    console.log(context);
     const answer = await getAnswer(
       context ?? [],
       question,
       priorityList?.high_constraint ?? "",
-      getActionSteps(priorityList?.high_constraint ?? "")
+      getActionSteps(priorityList?.high_constraint ?? ""),
+      pushChatStreamText
     );
-    console.log(answer);
     return answer?.trim() ?? "😊😊😊";
   } catch (error) {
     return "😊😊😊";
