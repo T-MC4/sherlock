@@ -32,15 +32,27 @@ export const loader = (args: DataFunctionArgs) => {
     ({ request }) => {
       const { userId, sessionId, getToken } = request.auth;
       console.log("Root loader auth:", { userId, sessionId, getToken });
-      return { message: `Hello from the root loader :)` };
+      return { 
+        message: `Hello from the root loader :)`,
+        ENV: {
+          OPENAI_MODEL: process.env.OPENAI_MODEL,
+          OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+          IN_MEMORY_SEARCH_INDEX_URL: process.env.IN_MEMORY_SEARCH_INDEX_URL,
+        },
+      };
     },
     { loadUser: true }
   );
 };
 
+declare global {
+  interface Window { ENV: any; }
+}
+
 function App() {
-  const { message } = useLoaderData<typeof loader>();
-  console.log(message)
+  
+  const data = useLoaderData<typeof loader>(); 
+  
   return (
     <html lang="en">
       <head>
@@ -55,6 +67,13 @@ function App() {
           <Outlet />
         </StepsProvider>
         <ScrollRestoration />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(
+              data.ENV
+            )}`,
+          }}
+        />
         <Scripts />
         <LiveReload />
       </body>

@@ -8,9 +8,9 @@ import { LLMChain, ConversationChain } from "langchain/chains";
 import { BufferMemory } from "langchain/memory";
 
 dotenv.config();
-const key = process.env.OPENAI_API_KEY;
-const inMemorySearchURL =
-  process.env.IN_MEMORY_SEARCH_URL || "https://sherlock-inmemorysearch-production.up.railway.app";
+
+const key = globalThis.window?.ENV.OPENAI_API_KEY ?? process.env.OPENAI_API_KEY ?? "test_key";
+const inMemorySearchURL = globalThis.window?.ENV.IN_MEMORY_SEARCH_INDEX_URL ?? process.env.IN_MEMORY_SEARCH_INDEX_URL
 
 export async function getIndexName(question: string): Promise<string | undefined> {
   // Creating a new instance of the OpenAI class and passing in the OPENAI_KEY environment variable
@@ -97,6 +97,7 @@ export async function getAnswer(
   priorityConstraint: string,
   actionSteps: string
 ): Promise<string | undefined> {
+  console.log(key)
   // Use the generateText method to generate text from the OpenAI API and passing the generated prompt, the model, and max token value
   const chain = new ConversationChain({
     memory: new BufferMemory({
