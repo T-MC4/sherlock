@@ -254,7 +254,7 @@ const Dashboard = () => {
     if (currentSession) {
       setEditItem(item)
     } else {
-      alert("You should create your session first to update KPI.")
+      alert("You should create your session first before updating a KPI. Click on Collect Data to get started.")
     }
   }
 
