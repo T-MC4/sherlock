@@ -57,7 +57,7 @@ export default function KPIEditModal(props: Props) {
               Next
             </button>
           ) : (
-            <button className="bg-gray-700 text-xs sm:text-sm px-4 py-2 rounded text-white" onClick={handleSubmit}>
+            <button className="bg-gray-700 text-xs sm:text-sm px-4 py-2 rounded text-white" onClick={handleSubmit} disabled={saving}>
               {saving ? 'Saving...' : 'Update'}
             </button>
           )}

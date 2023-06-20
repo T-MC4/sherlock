@@ -142,7 +142,7 @@ export default function StepWizardModal(props: Props) {
               <span className="flex items-center">Next <BsArrowRight className="ml-3" /></span>
             </button>
           ) : (
-            <button onClick={handleSubmit} className="bg-gray-700 text-sm px-4 py-2 rounded text-white ml-auto">
+            <button onClick={handleSubmit} className="bg-gray-700 text-sm px-4 py-2 rounded text-white ml-auto" disabled={saving}>
               {saving ? 'Saving...' : 'Submit'}
             </button>
           )}

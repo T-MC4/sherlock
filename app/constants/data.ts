@@ -51,7 +51,7 @@ export const BUSINESS_STAT_LIST = [
         id: "adSpend",
         icon: "BsUbuntu",
         title: "Ad Spend",
-        description: "How many do you spend on ads",
+        description: "How much did you spend on ads",
       },
       {
         id: "leads",
@@ -73,7 +73,7 @@ export const BUSINESS_STAT_LIST = [
       {
         id: "pickups",
         icon: "BsTelephoneInbound",
-        title: "Pickups",
+        title: "1-Minute Conversations",
         description: "How many people picked up",
       },
       {
