@@ -45,20 +45,8 @@ export async function getIndexName(question: string): Promise<string | undefined
 export async function getPriorityDecision(
   kpiJsonData: Record<string, number>
 ): Promise<{ high_constraint: string; other_constraints: string[] } | undefined> {
-  // Create chain and set LLM options
-  // const chain = new LLMChain({
-  //   prompt: getPriorityDecisionPrompt(kpiJsonData),
-  //   llm: new ChatOpenAI({
-  //     openAIApiKey: key,
-  //     modelName: "gpt-4",
-  //     temperature: 0,
-  //     maxTokens: 2048
-  //   }),
-  // });
-  // const ans = await chain.call({
-  //   input: "Below is the answer you have written based on this while adhering to all the guidelines I gave you:",
-  // });
-  const ans = await analyzeBusinessMetrics(kpiJsonData);
+  // PASS KPI DATA INTO THE IF/THEN ANALYZER
+  const ans = analyzeBusinessMetrics(kpiJsonData);
 
   if (ans) return ans;
   else return undefined;

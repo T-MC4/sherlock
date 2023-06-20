@@ -85,6 +85,13 @@ export function analyzeBusinessMetrics(kpiJsonData: Record<string, number>) {
     constraints.push({ rank: 9, description: "Cost Per Lead Is Too High" });
   }
 
+  if (constraints.length === 0) {
+    constraints.push({
+      rank: 0,
+      description: `Looks like you have no major constraints! You're ready to scale your current process and numbers :)`,
+    });
+  }
+
   // Sort the constraints array by rank
   constraints.sort((a, b) => a.rank - b.rank);
 
