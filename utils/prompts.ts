@@ -31,7 +31,6 @@ export function getIndexNamePrompt(jsonData: any[]) {
 }
 
 export function getPriorityDecisionPrompt(kpiJsonData: Record<string, number>) {
-
   return ChatPromptTemplate.fromPromptMessages([
     SystemMessagePromptTemplate.fromTemplate(`Your job is now to act as my business analyst. I'm going to provide you with a set of current metrics in the business, you are going to evaluate the metrics given with the objective of finding constraints and then identify the #1 focus point based on the order of priority in the list I provide.
             

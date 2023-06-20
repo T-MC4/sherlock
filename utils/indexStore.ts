@@ -6,11 +6,12 @@ import jsonData from "../scripts/docs.json";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { LLMChain, ConversationChain } from "langchain/chains";
 import { BufferMemory } from "langchain/memory";
+import { analyzeBusinessMetrics } from "./getPriorityList";
 
 dotenv.config();
 
 const key = globalThis.window?.ENV.OPENAI_API_KEY ?? process.env.OPENAI_API_KEY ?? "test_key";
-const inMemorySearchURL = globalThis.window?.ENV.IN_MEMORY_SEARCH_INDEX_URL ?? process.env.IN_MEMORY_SEARCH_INDEX_URL
+const inMemorySearchURL = globalThis.window?.ENV.IN_MEMORY_SEARCH_INDEX_URL ?? process.env.IN_MEMORY_SEARCH_INDEX_URL;
 
 export async function getIndexName(question: string): Promise<string | undefined> {
   // Creating a new instance of the OpenAI class and passing in the OPENAI_KEY environment variable
@@ -23,7 +24,7 @@ export async function getIndexName(question: string): Promise<string | undefined
       openAIApiKey: key,
       modelName: "gpt-4",
       temperature: 0,
-      maxTokens: 2048
+      maxTokens: 2048,
     }),
   });
 
@@ -32,33 +33,34 @@ export async function getIndexName(question: string): Promise<string | undefined
   });
 
   const match = /Action:\s*(.*)/.exec(ans.text);
-  const actionString = (match && match[1]) ?? '';
+  const actionString = (match && match[1]) ?? "";
 
-  if (!jsonData.find(item => item.indexName === actionString)) {
-    return jsonData[0].indexName
+  if (!jsonData.find((item) => item.indexName === actionString)) {
+    return jsonData[0].indexName;
   }
 
   return actionString;
 }
 
 export async function getPriorityDecision(
-  kpiJsonData: Record<string, number>,
+  kpiJsonData: Record<string, number>
 ): Promise<{ high_constraint: string; other_constraints: string[] } | undefined> {
   // Create chain and set LLM options
-  const chain = new LLMChain({
-    prompt: getPriorityDecisionPrompt(kpiJsonData),
-    llm: new ChatOpenAI({
-      openAIApiKey: key,
-      modelName: "gpt-4",
-      temperature: 0,
-      maxTokens: 2048
-    }),
-  });
-  const ans = await chain.call({
-    input: "Below is the answer you have written based on this while adhering to all the guidelines I gave you:",
-  });
-  
-  if (ans) return JSON.parse(ans.text);
+  // const chain = new LLMChain({
+  //   prompt: getPriorityDecisionPrompt(kpiJsonData),
+  //   llm: new ChatOpenAI({
+  //     openAIApiKey: key,
+  //     modelName: "gpt-4",
+  //     temperature: 0,
+  //     maxTokens: 2048
+  //   }),
+  // });
+  // const ans = await chain.call({
+  //   input: "Below is the answer you have written based on this while adhering to all the guidelines I gave you:",
+  // });
+  const ans = await analyzeBusinessMetrics(kpiJsonData);
+
+  if (ans) return ans;
   else return undefined;
 }
 
@@ -101,7 +103,7 @@ export async function getAnswer(
       callbacks: [
         {
           handleLLMNewToken(token) {
-            pushChatStreamText(token)
+            pushChatStreamText(token);
           },
         },
       ],
