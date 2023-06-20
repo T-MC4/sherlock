@@ -73,7 +73,7 @@ export default function StepWizardModal(props: Props) {
     >
       <div className="mx-auto text-left mt-8 text-gray-700">
         <div className="flex items-center mb-8">
-          <h1 className="bg-blue-600 text-white rounded py-2 px-4 cursor-pointer text-lg shadow-lg flex items-center mr-3">
+          <h1 className="bg-blue-600 text-white rounded py-2 px-4 text-lg shadow-lg flex items-center mr-3">
             <BsUiRadios className="mr-3" />{isLast ? 'Final Step' : businessStats[current - 1].title}
           </h1>
           <div className="w-[80px] h-[80px] ml-auto">
@@ -142,7 +142,7 @@ export default function StepWizardModal(props: Props) {
               <span className="flex items-center">Next <BsArrowRight className="ml-3" /></span>
             </button>
           ) : (
-            <button onClick={handleSubmit} className="bg-gray-700 text-sm px-4 py-2 rounded text-white ml-auto" disabled={saving}>
+            <button onClick={handleSubmit} className={`text-sm px-4 py-2 rounded text-white ml-auto ${saving ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-700'}`} disabled={saving}>
               {saving ? 'Saving...' : 'Submit'}
             </button>
           )}
