@@ -35,7 +35,6 @@ export const loader = (args: DataFunctionArgs) => {
       return { 
         message: `Hello from the root loader :)`,
         ENV: {
-          OPENAI_MODEL: process.env.OPENAI_MODEL,
           OPENAI_API_KEY: process.env.OPENAI_API_KEY,
           IN_MEMORY_SEARCH_INDEX_URL: process.env.IN_MEMORY_SEARCH_INDEX_URL,
         },
